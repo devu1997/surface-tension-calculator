@@ -1,0 +1,29 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-sm navbar-light mb-3" style="padding:0;">
+  <button class="navbar-toggler navbar-toggler-small" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon navbar-toggler-icon-small"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav mr-auto">
+	  <li class="nav-item">
+		<a class="nav-link nav-assetAll" href="{% url 'assetAll' %}">View Assets</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link nav-addAsset" href="{% url 'addAsset' %}">Add Asset</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link nav-addTask" href="{% url 'addTask' %}">Add Task</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link nav-addWorker" href="{% url 'addWorker' %}">Add Worker</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link nav-allocateTask" href="{% url 'allocateTask' %}">Allocate Task</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link nav-getTasksForWorker" href="{% url 'getTasksForWorker' %}">View Tasks for worker</a>
+	  </li>
+	</ul>
+  </div>
+</nav>

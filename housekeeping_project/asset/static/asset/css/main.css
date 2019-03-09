@@ -1,0 +1,90 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+html,body {
+	height: 100%;
+}
+
+.container-fluid {
+	height: 100%;
+}
+
+.grey-container {
+	margin-top: 18vh;
+    padding: 30px;
+	background-color: black;
+	opacity: .75;
+	border-radius: .25rem;
+}
+
+.form-control-disabled {
+	background-color: #eee;
+}
+
+.form-control-transparent {
+	background-color: transparent !important;
+}
+
+.form-control-transparent:focus {
+	border-color: transparent;
+	box-shadow: 0px 0px 5px white;
+}
+
+.form-label {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.form-control:focus {
+	border-color: transparent;
+	box-shadow: 0px 0px 5px #008080;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: #008080;
+}
+
+::selection {
+    color: white; 
+    background: #008080;
+}
+
+.errorlist {
+	font-size: 11px;
+	color: red;
+	text-align: right;
+	list-style-type: none;
+}
+
+.sub-list-group-item {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.checkbox-big {
+	height: 20px;
+	width: 20px;
+	margin-left: 5px;
+}
+
+.nav-container {
+	padding: 0;
+	margin: 0;
+	width: inherit;
+}
+
+.assetAll .nav-assetAll, .addAsset .nav-addAsset, .addTask .nav-addTask, .addWorker .nav-addWorker, .allocateTask .nav-allocateTask, .getTasksForWorker .nav-getTasksForWorker {
+	color: black !important;
+}
+
+
+@media screen and (max-width: 400px){	
+	.grey-container {
+		margin-top: 0;
+		height: 100%;
+		border-radius: 0;
+	}
+		
+}

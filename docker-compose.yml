@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: udaan_db
+    environment:
+      POSTGRES_USER: udaan
+      POSTGRES_PASSWORD: udaan123
+      POSTGRES_DB: housekeeping
+    restart: always
+    volumes:
+      - ./db/postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: udaan_web
+    command: ["bash", "./wait_for_db.sh", "udaan_db", "--", "gunicorn", "-b", "0.0.0.0:8000", "--chdir", "./housekeeping", "housekeeping_project.wsgi"]
+    restart: always
+    volumes:
+      - ./housekeeping_project:/code/housekeeping
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
