@@ -75,7 +75,7 @@ html,body {
 	width: inherit;
 }
 
-.assetAll .nav-assetAll, .addAsset .nav-addAsset, .addTask .nav-addTask, .addWorker .nav-addWorker, .allocateTask .nav-allocateTask, .getTasksForWorker .nav-getTasksForWorker {
+.home .nav-home, .addLiquid .nav-addLiquid, .addSolid .nav-addSolid, .liquidAll .nav-liquidAll, .solidAll .nav-solidAll {
 	color: black !important;
 }
 

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+<div class="container-fluid mt-3 mb-3 solidAll">
+	{% include 'navbar.html' %}
+	<div class="h2 text-center text-primary font-weight-bold mb-4">View Solids</div>
+
+	<table class="table table-hover">
+		<thead>
+			<th scope="col">Name</th>
+			<th scope="col">Surface Energy</th>
+		</thead>
+		<tbody>
+			{% for solid in solids %}
+			<tr>
+				<td>{{solid.name}}</td>
+				<td>{{solid.energy}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

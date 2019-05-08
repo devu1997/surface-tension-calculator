@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+<div class="container-fluid mt-3 mb-3 addLiquid">
+	{% include 'navbar.html' %}
+	<div class="h2 text-center text-primary font-weight-bold mb-4">Add Liquid</div>
+	<form action="{% url 'addLiquid' %}" method="post">
+		{% csrf_token %}
+		<div class="form-group">
+			<label class="form-label" for="id_{{form.name.name}}">{{form.name.label}}</label>
+			{{form.name}}
+			{{form.name.errors}}
+		</div>
+		<div class="form-group">
+			<label class="form-label" for="id_{{form.energy.name}}">{{form.energy.label}}</label>
+			{{form.energy}}
+			{{form.energy.errors}}
+		</div>
+		<input class="btn btn-primary pl-4 pr-4 mb-4" type="submit" value="Submit"/>
+	</form>
+</div>
+{% endblock %}

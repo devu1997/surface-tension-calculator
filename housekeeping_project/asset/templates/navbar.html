@@ -7,22 +7,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	<ul class="navbar-nav mr-auto">
 	  <li class="nav-item">
-		<a class="nav-link nav-assetAll" href="{% url 'assetAll' %}">View Assets</a>
+		<a class="nav-link nav-home" href="{% url 'getSurfaceTension' %}">Home</a>
 	  </li>
 	  <li class="nav-item">
-		<a class="nav-link nav-addAsset" href="{% url 'addAsset' %}">Add Asset</a>
+		<a class="nav-link nav-addLiquid" href="{% url 'addLiquid' %}">Add Liquid</a>
 	  </li>
 	  <li class="nav-item">
-		<a class="nav-link nav-addTask" href="{% url 'addTask' %}">Add Task</a>
+		<a class="nav-link nav-addSolid" href="{% url 'addSolid' %}">Add Solid</a>
 	  </li>
 	  <li class="nav-item">
-		<a class="nav-link nav-addWorker" href="{% url 'addWorker' %}">Add Worker</a>
+		<a class="nav-link nav-liquidAll" href="{% url 'liquidAll' %}">View Liquids</a>
 	  </li>
 	  <li class="nav-item">
-		<a class="nav-link nav-allocateTask" href="{% url 'allocateTask' %}">Allocate Task</a>
-	  </li>
-	  <li class="nav-item">
-		<a class="nav-link nav-getTasksForWorker" href="{% url 'getTasksForWorker' %}">View Tasks for worker</a>
+		<a class="nav-link nav-solidAll" href="{% url 'solidAll' %}">View Solids</a>
 	  </li>
 	</ul>
   </div>

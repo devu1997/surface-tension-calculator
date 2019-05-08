@@ -24,7 +24,7 @@ $(document).ready(function() {
 		var selected_input = $(this).find('input:first');
 		var selected_value = selected_input.val();
 
-		$('.single-select-input option').each(function() {
+		$(widget).siblings('.single-select-input').find('option').each(function() {
 			if($(this).attr('value') == selected_value) {
 				$(this).prop('selected','selected');
 				content = $(this).text();

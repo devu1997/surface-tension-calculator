@@ -2,39 +2,28 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from decimal import Decimal
 
 # Create your models here.
 
-class Asset(models.Model):
-	assetId = models.CharField(max_length=100,primary_key=True)
+class LiquidEnergy(models.Model):
+	energy = models.DecimalField(default=0,decimal_places=2,max_digits=4)
 	name = models.CharField(max_length=100)
 
 	def __str__(self):
 		return '%s' % (self.name)
 
-
-class Task(models.Model):
-	taskId = models.CharField(max_length=100,primary_key=True)
+class SolidEnergy(models.Model):
+	energy = models.DecimalField(default=0,decimal_places=2,max_digits=4)
 	name = models.CharField(max_length=100)
 
 	def __str__(self):
 		return '%s' % (self.name)
 
-
-class Worker(models.Model):
-	workerId =  models.CharField(max_length=100,primary_key=True)
-	name = models.CharField(max_length=100)
-
-	def __str__(self):
-		return '%s' % (self.name)
-
-
-class Allocate(models.Model):
-	asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
-	task = models.ForeignKey(Task, on_delete=models.CASCADE)
-	worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
-	timeOfAllocation = models.DateTimeField()
-	taskToBePerformedBy = models.DateTimeField()
+class SurfaceTension(models.Model):
+	angle = models.IntegerField()
+	liquid = models.ForeignKey(LiquidEnergy, on_delete=models.CASCADE)
+	solid = models.ForeignKey(SolidEnergy, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return '%s' % (self.name)

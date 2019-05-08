@@ -5,93 +5,74 @@ from django.shortcuts import render,redirect
 from django.db import transaction
 from django.utils import timezone
 from asset.forms import *
+from asset.models import *
+import math
 
-def addTask(request):
+def getSurfaceTension(request):
+    context = {}
+
+    if request.method == 'POST':
+        form = SurfaceTensionForm(request.POST)
+        if form.is_valid():
+            angle = form.instance.angle
+            solid = form.instance.solid
+            liquid = form.instance.liquid
+            context['surfaceTension'] = float(solid.energy) - (float(liquid.energy) * math.cos(angle))
+    else:
+        form = SurfaceTensionForm()
+
+    context['form'] = form
+    return render(request, 'surfaceTension.html', context)
+
+def addSolid(request):
 	if request.method == 'POST':
-		form = TaskForm(request.POST)
+		form = SolidEnergyForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('assetAll')
+			return redirect('addSolid')
 	else:
-		form = TaskForm()
+		form = SolidEnergyForm()
 
 	context = {
-		'taskForm':form,
+		'form':form,
 	}
 
-	return render(request, 'addTask.html', context)
+	return render(request, 'addSolid.html', context)
 
 
-def addAsset(request):
+def addLiquid(request):
 	if request.method == 'POST':
-		form = AssetForm(request.POST)
+		form = LiquidEnergyForm(request.POST)
 		if form.is_valid():
 			form.save()			
-			return redirect('assetAll')
+			return redirect('addLiquid')
 	else:
-		form = AssetForm()
+		form = LiquidEnergyForm()
 
 	context = {
-		'assetForm':form,
+		'form':form,
 	}
 
-	return render(request, 'addAsset.html', context)
+	return render(request, 'addLiquid.html', context)
 
 
-def addWorker(request):
-	if request.method == 'POST':
-		form = WorkerForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return redirect('assetAll')
-	else:
-		form = WorkerForm()
+def solidAll(request):
+	solids = SolidEnergy.objects.all()
 
 	context = {
-		'workerForm':form,
-	}
-
-	return render(request, 'addWorker.html', context)
-
-
-def assetAll(request):
-	assets = Asset.objects.all()
-
-	context = {
-		'assets':assets,
+		'solids':solids,
 	}
 	
-	return render(request, 'assetAll.html',context)
+	return render(request, 'solidsAll.html',context)
 
 
-def allocateTask(request):
-	if request.method == 'POST':
-		form = AllocateForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return redirect('assetAll')
-	else:
-		form = AllocateForm()
+def liquidAll(request):
+	liquids = LiquidEnergy.objects.all()
 
 	context = {
-		'allocateForm':form,
+		'liquids':liquids,
 	}
+	
+	return render(request, 'liquidsAll.html',context)
 
-	return render(request, 'allocateTask.html', context)
 
-
-def getTasksForWorker(request,workerId=None):
-	context = {
-		'search':False,
-	}
-
-	if request.GET.get('workerId') or workerId is not None:
-		if workerId is None:
-			workerId = request.GET['workerId']
-		alloctedTasks = Allocate.objects.filter(worker__workerId=workerId)
-		context.update({
-			'search': True,
-			'alloctedTasks': alloctedTasks,
-			})
-
-	return render(request, 'getTasksForWorker.html',context)

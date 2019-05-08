@@ -5,102 +5,68 @@ from django.db.models import Q
 from asset.models import *
 
 
-class AssetForm(forms.ModelForm):
+class SurfaceTensionForm(forms.ModelForm):
 	class Meta:
-		model = Asset
-		fields = ['assetId','name']
+		model = SurfaceTension
+		fields = ['angle','liquid','solid']
 
 	def __init__(self, *args, **kwargs):
-		super(AssetForm, self).__init__(*args, **kwargs)
+		super(SurfaceTensionForm, self).__init__(*args, **kwargs)
 				
-		self.fields['assetId'].label = 'Asset ID'
-		self.fields['assetId'].widget.attrs.update({
-				'placeholder': 'Asset ID',
+		self.fields['angle'].label = 'Contact Angle'
+		self.fields['angle'].widget.attrs.update({
+				'placeholder': 'Contact Angle',
 				'class': 'form-control',
 			})
 
-		self.fields['name'].label = 'Name'
-		self.fields['name'].widget.attrs.update({
-				'placeholder': 'Name',
-				'class': 'form-control',
-			})
-
-class TaskForm(forms.ModelForm):
-	class Meta:
-		model = Task
-		fields = ['taskId','name']
-
-	def __init__(self, *args, **kwargs):
-		super(TaskForm, self).__init__(*args, **kwargs)
-				
-		self.fields['taskId'].label = 'Task ID'
-		self.fields['taskId'].widget.attrs.update({
-				'placeholder': 'Task ID',
-				'class': 'form-control',
-			})
-
-		self.fields['name'].label = 'Name'
-		self.fields['name'].widget.attrs.update({
-				'placeholder': 'Name',
-				'class': 'form-control',
-			})
-
-
-class WorkerForm(forms.ModelForm):
-	class Meta:
-		model = Worker
-		fields = ['workerId','name']
-
-	def __init__(self, *args, **kwargs):
-		super(WorkerForm, self).__init__(*args, **kwargs)
-				
-		self.fields['workerId'].label = 'Worker ID'
-		self.fields['workerId'].widget.attrs.update({
-				'placeholder': 'Worker ID',
-				'class': 'form-control',
-			})
-
-		self.fields['name'].label = 'Name'
-		self.fields['name'].widget.attrs.update({
-				'placeholder': 'Name',
-				'class': 'form-control',
-			})
-
-
-class AllocateForm(forms.ModelForm):
-	class Meta:
-		model = Allocate
-		fields = ['asset','task','worker','timeOfAllocation','taskToBePerformedBy']
-
-	def __init__(self, *args, **kwargs):
-		super(AllocateForm, self).__init__(*args, **kwargs)
-				
-		self.fields['asset'].label = 'Asset'
-		self.fields['asset'].widget.attrs.update({
-				'placeholder': 'Asset',
+		self.fields['liquid'].label = 'Choose Liquid'
+		self.fields['liquid'].widget.attrs.update({
 				'class': 'single-select-input',
 			})
 
-		self.fields['task'].label = 'Task'
-		self.fields['task'].widget.attrs.update({
-				'placeholder': 'task',
+		self.fields['solid'].label = 'Choose Solid'
+		self.fields['solid'].widget.attrs.update({
 				'class': 'single-select-input',
 			})
 
-		self.fields['worker'].label = 'Worker'
-		self.fields['worker'].widget.attrs.update({
-				'placeholder': 'Worker',
-				'class': 'single-select-input',
-			})
 
-		self.fields['timeOfAllocation'].label = 'Time Of Allocation'
-		self.fields['timeOfAllocation'].widget.attrs.update({
-				'placeholder': 'YYYY-mm-dd HH:MM:SS',
+class SolidEnergyForm(forms.ModelForm):
+	class Meta:
+		model = SolidEnergy
+		fields = ['name','energy']
+
+	def __init__(self, *args, **kwargs):
+		super(SolidEnergyForm, self).__init__(*args, **kwargs)
+				
+		self.fields['name'].label = 'Solid Name'
+		self.fields['name'].widget.attrs.update({
+				'placeholder': 'Solid Name',
 				'class': 'form-control',
 			})
 
-		self.fields['taskToBePerformedBy'].label = 'Task To Be Performed By'
-		self.fields['taskToBePerformedBy'].widget.attrs.update({
-				'placeholder': 'YYYY-mm-dd HH:MM:SS',
+		self.fields['energy'].label = 'Surface Energy'
+		self.fields['energy'].widget.attrs.update({
+				'placeholder': 'Surface Energy',
+				'class': 'form-control',
+			})
+
+
+class LiquidEnergyForm(forms.ModelForm):
+	class Meta:
+		model = LiquidEnergy
+		fields = ['name','energy']
+
+	def __init__(self, *args, **kwargs):
+		super(LiquidEnergyForm, self).__init__(*args, **kwargs)
+				
+		self.fields['name'].label = 'Liquid Name'
+		self.fields['name'].widget.attrs.update({
+				'placeholder': 'Liquid Name',
+				'class': 'form-control',
+			})
+
+		self.fields['energy'].label = 'Surface Energy'
+		self.fields['energy'].widget.attrs.update({
+				'placeholder': 'Surface Energy',
 				'class': 'form-control',
 			})

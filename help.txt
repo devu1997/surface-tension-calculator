@@ -1,0 +1,8 @@
+Install docker
+Run the command 'docker-compose up' in the terminal
+Run the command 'docker exec -it udaan_web bash' in the terminal
+- Now the bash terminal inside the docker container opens up
+- In the terminal run the following commands
+    python housekeeping/manage.py migrate
+    python housekeeping/manage.py collectstatic
+In browser open 'localhost:8000' you can view the site
